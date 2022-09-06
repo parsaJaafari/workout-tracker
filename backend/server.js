@@ -1,0 +1,32 @@
+const express = require("express");
+require("dotenv").config();
+const mongoose = require("mongoose");
+
+const workoutRoutes = require("./routes/workouts");
+const userRoutes = require("./routes/user");
+
+const app = express();
+
+// middlewares
+app.use(express.json());
+app.use((req, res, next) => {
+  console.log(req.path, req.method);
+  next();
+});
+
+// routes
+app.use("/api/v1/workouts", workoutRoutes);
+app.use("/api/v1/user", userRoutes);
+
+// Connecting to DB
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    // listen
+    app.listen(process.env.PORT, () =>
+      console.log(`Listening on port ${process.env.PORT}`)
+    );
+  })
+  .catch((error) => {
+    console.log(error);
+  });
