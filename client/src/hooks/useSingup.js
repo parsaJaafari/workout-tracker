@@ -9,7 +9,7 @@ export const useSignup = () => {
   const signup = async (email, password) => {
     setError(null);
     setIsLoading(true);
-    const response = await fetch("/api/v1/user/signup", {
+    const response = await fetch("/api/user/signup", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
