@@ -21,9 +21,12 @@ app.use("/api/user", userRoutes);
 
 // add route for client
 app.use(express.static("../client/build"));
-res.sendFile(
-  path.join(__dirname + `${__dirname}/../client/build/index.html`)
-);
+
+app.get("*", (req, res) => {
+  res.sendFile(
+    path.join(__dirname + `${__dirname}/../client/build/index.html`)
+  );});
+
 
 // Connecting to DB
 mongoose
