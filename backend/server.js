@@ -20,13 +20,10 @@ app.use("/api/workouts", workoutRoutes);
 app.use("/api/user", userRoutes);
 
 // add route for client
-app.use(express.static("../client/build"));
-
-app.get("*", (req, res) => {
-  res.sendFile(
-    `${__dirname}/../client/build/index.html`
-  );});
-
+app.use(express.static(path.join(__dirname, "/client/build")));
+app.get("*", (req, res) =>
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+);
 
 // Connecting to DB
 mongoose
