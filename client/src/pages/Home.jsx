@@ -9,7 +9,7 @@ const Home = () => {
   const { user } = useAuthContext();
   useEffect(() => {
     const fetchWorkouts = async () => {
-      const response = await fetch("/api/v1/workouts", {
+      const response = await fetch("/api/workouts", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `bearer ${user.token}`,
